@@ -3,7 +3,7 @@ import {getDOMElements}             from './helper/DOM.js';
 
 let currentRunID        = 0;
 const START_YEAR        = 2006;
-const END_YEAR          = 2025;
+const END_YEAR          = 2026;
 const SUPPORTED_YEARS   = Array.from({length: END_YEAR - START_YEAR + 1}, (_, i) => START_YEAR + i).reverse();
 
 export const draft_music        = new Audio('./helper/music/draft.mp3');
