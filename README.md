@@ -1,1 +1,1 @@
-# Personal-Lottery
+# NBA-Lottery
