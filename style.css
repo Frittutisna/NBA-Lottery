@@ -1,0 +1,157 @@
+:root {
+    --rittu-green           : rgb(100, 150, 100);
+    --rittu-red             : rgb(250, 100, 100);
+    --rittu-gold            : rgb(250, 200, 50);
+    --rittu-light-green     : rgb(200, 250, 200);
+    --main-color            : var(--rittu-green);
+    --bg-color              : white;
+    --text-color            : black;
+    --border-color          : black;
+    --transition-speed      : 0.25s;
+    --shadow                : 4px 4px 0px;
+}
+
+* {
+    font-family             : "Segoe UI", Helvetica, Arial, sans-serif;
+    box-sizing              : border-box;
+}
+
+html, body {
+    height                  : 100vh;
+    margin                  : 0;
+    padding                 : 0;
+    background-color        : var(--bg-color);
+    color                   : var(--text-color);
+}
+
+body {
+    display                 : flex;
+    flex-direction          : column;
+    align-items             : center;
+    padding                 : 1rem;
+}
+
+header {
+    font-size               : 2rem;
+    font-weight             : bold;
+    margin-bottom           : 1rem;
+    text-align              : center;
+}
+
+.content {
+    width                   : 100%;
+    max-width               : 450px;
+    display                 : flex;
+    flex-direction          : column;
+    align-items             : stretch;
+}
+
+.dropdown-container {
+    display                 : flex;
+    justify-content         : center;
+    gap                     : 1rem;
+    margin-bottom           : 1rem;
+}
+
+select, button {
+    padding                 : 0.5rem;
+    border                  : 2px solid var(--border-color);
+    background-color        : var(--bg-color);
+    font-size               : 1rem;
+    font-weight             : bold;
+    transition              : all var(--transition-speed) ease;
+    box-shadow              : var(--shadow) var(--border-color);
+}
+
+select:hover, button:hover {
+    transform               : translate(-4px, -4px);
+    box-shadow              : var(--shadow) var(--main-color);
+}
+
+button:active {
+    transform               : translate(4px, 4px);
+    box-shadow              : 0px var(--border-color);
+}
+
+button:disabled {
+    opacity                 : 0.5;
+    box-shadow              : none;
+    transform               : none;
+}
+
+.draft-grid {
+    display                 : flex;
+    flex-direction          : column;
+    width                   : 100%;
+    background              : var(--bg-color);
+    border                  : 2px solid var(--border-color);
+}
+
+.draft-item {
+    display                 : grid;
+    grid-template-columns   : 2.5rem 1fr;
+    transition              : background-color var(--transition-speed) ease;
+}
+
+.draft-item:last-child {
+    border-bottom           : none;
+}
+
+.draft-item:hover {
+    background-color        : var(--rittu-light-green);
+}
+
+.draft-number {
+    display                 : flex;
+    align-items             : center;
+    justify-content         : flex-end;
+    padding-right           : 0.5rem;
+    font-weight             : bold;
+    border-right            : 2px solid var(--border-color);
+}
+
+.draft-team {
+    padding                 : 0.25rem 0.5rem;
+    display                 : flex;
+    align-items             : center;
+    min-height              : 2rem;
+}
+
+.lottery-separator {
+    border-bottom           : 4px solid var(--main-color) !important;
+}
+
+.trade-shift ul {
+    list-style              : none;
+    padding                 : 0;
+}
+
+.trade-shift li {
+    padding                 : 0.5rem 1rem;
+    border-left             : 4px solid var(--rittu-gold);
+    margin-bottom           : 0.5rem;
+}
+
+.trade-shift li:hover {
+    background-color        : var(--rittu-light-green);
+}
+
+.trade-shift li.success {
+    border-left             : 4px solid var(--rittu-green);
+}
+
+.trade-shift li.failed {
+    border-left             : 4px solid var(--rittu-red);
+}
+
+.result-ID, .actual-ID {
+    text-align              : center;
+    font-weight             : bold;
+    font-size               : 0.75rem;
+}
+
+footer {
+    margin-top              : 0.5rem;
+    font-weight             : bold;
+    font-size               : 0.75rem;
+}
