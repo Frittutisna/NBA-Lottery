@@ -12,13 +12,13 @@ export const revealPick = (index, team, delay, runID, currentRunID, draftTeamArr
                 item => item.parentElement.classList.contains('lottery-separator')
             ) + 1;
 
-            const teamNameOnly  = team.split('→')[0];
+            const teamNameOnly  = team.split('▶')[0].trim();
             const originalIndex = initialOrder.indexOf(teamNameOnly);
             const shift         = originalIndex - index;
 
             let                 shiftSpan = '';
-            if      (shift > 0) shiftSpan = `&nbsp;<span style="color: var(--rittu-green)">↑ ${shift}</span>`;
-            else if (shift < 0) shiftSpan = `&nbsp;<span style="color: var(--rittu-red);">↓ ${Math.abs(shift)}</span>`;
+            if      (shift > 0) shiftSpan = `&nbsp;<span style="color: var(--rittu-green)">▲ ${shift}</span>`;
+            else if (shift < 0) shiftSpan = `&nbsp;<span style="color: var(--rittu-red);">▼ ${Math.abs(shift)}</span>`;
 
             draftTeamArray[index].innerHTML = `${team}${shiftSpan}`;
             draftTeamArray[index].style.color       = '';
@@ -27,13 +27,16 @@ export const revealPick = (index, team, delay, runID, currentRunID, draftTeamArr
 
             const tradeShiftItem = document.querySelector(`.trade-shift li[data-team="${teamNameOnly}"]`);
             if (tradeShiftItem) {
-                if (team.includes('→')) tradeShiftItem.classList.add('failed');
+                if (team.includes('▶')) tradeShiftItem.classList.add('failed');
                 else                    tradeShiftItem.classList.add('success');
             }
 
             const revealedTeams = draftTeamArray
                 .filter (el => el.dataset.revealed === "true")
-                .map    (el => el.textContent.split('→')[0].split(' ↑')[0].split(' ↓')[0].trim());
+                .map    (el => {
+                    let name = el.textContent.split('▲')[0].split('▼')[0];
+                    return name.split('▶')[0].trim();
+                });
 
             let remainingPool = [...initialOrder];
             revealedTeams.forEach(t => {
@@ -85,10 +88,10 @@ export const revealPickInstant = (data, draftTeamArray, resultIDElement, actualI
         draftTeamArray[index].style.fontWeight  = 'bold';
         draftTeamArray[index].dataset.revealed  = "true";
 
-        const teamNameOnly      = team.split('→')[0];
+        const teamNameOnly      = team.split('▶')[0].trim();
         const tradeShiftItem    = document.querySelector(`.trade-shift li[data-team="${teamNameOnly}"]`);
         if (tradeShiftItem) {
-            if (team.includes('→')) tradeShiftItem.classList.add('failed');
+            if (team.includes('▶')) tradeShiftItem.classList.add('failed');
             else                    tradeShiftItem.classList.add('success');
         }
     });

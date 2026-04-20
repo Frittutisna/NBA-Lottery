@@ -57,10 +57,10 @@ export function handleSkip() {
         draftTeamArray[index].style.fontWeight  = 'bold';
         draftTeamArray[index].dataset.revealed  = "true";
 
-        const teamNameOnly      = team.split('→')[0];
+        const teamNameOnly      = team.split('▶')[0].trim();
         const tradeShiftItem    = document.querySelector(`.trade-shift li[data-team="${teamNameOnly}"]`);
         if (tradeShiftItem) {
-            if (team.includes('→')) tradeShiftItem.classList.add('failed');
+            if (team.includes('▶')) tradeShiftItem.classList.add('failed');
             else                    tradeShiftItem.classList.add('success');
         }
     });
@@ -95,7 +95,7 @@ async function loadDraftData(year) {
         .filter (team   => team["upper-limit"] !== undefined && !isNaN(team["upper-limit"]))
         .map    (team   => [
             team["pre-draft-order"], team["upper-limit"], team["lower-limit"],
-            `${team["pre-order-name"]}→${team["alternative-name"]}`
+            `${team["pre-order-name"]} ▶ ${team["alternative-name"]}`
         ])
         .sort   ((a, b) => a[0] - b[0]);
 
