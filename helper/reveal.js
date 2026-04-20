@@ -47,11 +47,7 @@ export const revealPick = (index, team, delay, runID, currentRunID, draftTeamArr
             const jumpers = [];
             for (let i = initialOrder.length - 1; i >= lotteryBoundary; i--) {
                 const expectedTeam = initialOrder[i];
-                if (
-                    i >= index                              && 
-                    !revealedTeams  .includes(expectedTeam) && 
-                    !jumpers        .includes(expectedTeam)
-                ) jumpers.unshift(expectedTeam);
+                if (!revealedTeams.includes(expectedTeam) && !jumpers.includes(expectedTeam)) jumpers.unshift(expectedTeam);
             }
 
             const nonJumpers        = remainingPool .filter(t           => !jumpers.includes(t));
