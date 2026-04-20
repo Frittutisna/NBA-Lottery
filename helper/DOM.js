@@ -30,7 +30,7 @@ export const addTradeShift = (change, order, swaps = []) => {
 
     change.forEach(([index, lowerLimit, upperLimit, newOwner]) => {
         const originalTeam      = order[index];
-        const newTeam           = newOwner.split(' ▶ ').pop();
+        const newTeam           = newOwner.split('→').pop();
         const listItem          = document.createElement('li');
         listItem.dataset.team   = originalTeam; 
         const range             = lowerLimit === upperLimit ? `#${lowerLimit + 1}` : `#${lowerLimit + 1}-${upperLimit + 1}`;
