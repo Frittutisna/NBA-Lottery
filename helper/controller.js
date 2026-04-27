@@ -52,13 +52,20 @@ export function handleSkip() {
     const {lotteryOrder,    lotteryTeams,       actualOrder,        initialOrder}   = currentDraftData;
 
     lotteryOrder.forEach((team, index) => {
-        draftTeamArray[index].textContent       = team;
+        const teamNameOnly  = team.split('▶')[0].trim();
+        const originalIndex = initialOrder.indexOf(teamNameOnly);
+        const shift         = originalIndex - index;
+
+        let                 shiftSpan = '';
+        if      (shift > 0) shiftSpan = `&nbsp;<span style="color: var(--rittu-green)">▲ ${shift}</span>`;
+        else if (shift < 0) shiftSpan = `&nbsp;<span style="color: var(--rittu-red);">▼ ${Math.abs(shift)}</span>`;
+
+        draftTeamArray[index].innerHTML         = `${team}${shiftSpan}`;
         draftTeamArray[index].style.color       = '';
         draftTeamArray[index].style.fontWeight  = 'bold';
         draftTeamArray[index].dataset.revealed  = "true";
 
-        const teamNameOnly      = team.split('▶')[0].trim();
-        const tradeShiftItem    = document.querySelector(`.trade-shift li[data-team="${teamNameOnly}"]`);
+        const tradeShiftItem = document.querySelector(`.trade-shift li[data-team="${teamNameOnly}"]`);
         if (tradeShiftItem) {
             if (team.includes('▶')) tradeShiftItem.classList.add('failed');
             else                    tradeShiftItem.classList.add('success');
